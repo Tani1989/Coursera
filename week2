@@ -1,1 +1,22 @@
 # Coursera
+	# Coursera
+	# Write a function named ‘pollutantmean’ that calculates the mean of a pollutant (sulfate or nitrate) 
+	# across a specified list of monitors. The function ‘pollutantmean’ takes three arguments: ‘directory’, ‘pollutant’, and ‘id’. 
+	# Given a vector monitor ID numbers, ‘pollutantmean’ reads that monitors’ particulate matter data from the directory 
+	# specified in the ‘directory’ argument and returns the mean of the pollutant across all of the monitors,
+	# ignoring any missing values coded as NA.
+	
+	pollutantmean <- function(directory,pollutant,id=1:332,removeNA=TRUE){
+	  
+	  directory <- getwd()
+	  file1 <- list.files(directory)
+	  empty_dataframe <- data.frame()
+	  for(i in id){
+	    read_files <- read.csv(file1[i],header = TRUE)
+	    empty_dataframe <- rbind(empty_dataframe,read_files)
+	  }
+	   
+	return(mean(empty_dataframe[,pollutant],na.rm = removeNA))
+	}
+	pollutantmean("specdata", "sulfate", 1:10)
+	
